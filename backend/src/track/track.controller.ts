@@ -1,11 +1,15 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { TrackService } from './track.service';
 
 @Controller('track')
 export class TrackController {
     constructor(private trackData:TrackService){}
     @Get()
-    getTrackData(){
-        return this.trackData.getTrack();
+    getAllTrackData(){
+        return this.trackData.getAllTrack();
+    }
+    @Get(':id')
+    getTrackById(@Param('id') id:string){
+        return this.trackData.getTrackById(id);
     }
 }
