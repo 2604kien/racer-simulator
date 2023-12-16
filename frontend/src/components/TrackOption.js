@@ -1,14 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import TrackContainer from "./TrackContainer";
-export default function TrackOption(){
+export default function TrackOption(props){
     const [currChild,setCurrChild]=React.useState(-1);
     const tracksData=useSelector(state=>state.tracks.entities.data);
     const handleIsSelect=(id)=>{
         setCurrChild(id);
     }
     const element=tracksData?tracksData.map(el=><TrackContainer key={el.id} data={el} handleIsSelect={handleIsSelect} currChild={currChild}/>): tracksData;
-
+    const submitTrack=()=>{
+        if(currChild>-1) props.handleTrackSelect();
+    }
     return(
         <div style={{
             display: "flex",
@@ -32,7 +34,7 @@ export default function TrackOption(){
             className="racer--option">
                 {element}
             </div>
-            <button className="submit--button">Start The Game</button>
+            <button onClick={submitTrack} className="submit--button">Start The Game</button>
         </div>
     )
 }

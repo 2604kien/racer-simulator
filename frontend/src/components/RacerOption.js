@@ -1,14 +1,17 @@
 import React from "react";
 import {useSelector} from "react-redux";
 import RacerContainer from "./RacerContainer";
-export default function(){
+
+export default function(props){
     const [currChild,setCurrChild]=React.useState(-1);
     const racers=useSelector(state=>state.racers.entities.data);
     const handleIsSelect=(id)=>{
         setCurrChild(id);
     }
     const element=racers?racers.map(el=><RacerContainer key={el.id} data={el} handleIsSelect={handleIsSelect} currChild={currChild}/>):racers
-
+    const submitRacer=()=>{
+        if(currChild>-1) props.handleRacerSelect();
+    }
     console.log(racers);
     return(
         <div style={{
@@ -32,7 +35,7 @@ export default function(){
             className="racer--option">
                 {element}
             </div>
-            <button className="submit--button">Next</button>
+            <button onClick={submitRacer} className="submit--button">Next</button>
         </div>
     )
 }   

@@ -10,6 +10,8 @@ import { fetchRacer } from "../redux/reducers/racerSlice";
 import {fetchAllTrack} from "../redux/reducers/trackSlice";
 import {fetchLeaderboard} from "../redux/reducers/leaderboard";
 function App() {
+  const [isRacerSelect,setIsRacerSelect]=React.useState(true);
+  const [isTrackSelect,setIsTrackSelect]=React.useState(false);
   let imageRef=React.useRef(null);
   const dispatch=useDispatch();
   React.useEffect(()=>{
@@ -25,13 +27,20 @@ function App() {
   dispatch(fetchRacer());
   return ()=>{ctx.revert()}
   },[])
+  const handleRacerSelect=()=>{
+    setIsRacerSelect(prev=>!prev);
+    setIsTrackSelect(prev=>!prev);
+  }
+  const handleTrackSelect=()=>{
+    setIsTrackSelect(prev=>!prev);
+  }
   return (
     <div className="App" >
       <img src={banner} style={{width: "100%"}} ref={(el)=>{imageRef=el}}/>
       <div>
-        <RacerOption/>
-        <TrackOption/>
-        <RaceSection/>
+        {isRacerSelect &&<RacerOption handleRacerSelect={handleRacerSelect}/>}
+        {isTrackSelect &&<TrackOption handleTrackSelect={handleTrackSelect}/>}
+        {!isRacerSelect && !isTrackSelect&&<RaceSection/>}
       </div>
     </div>
   );
