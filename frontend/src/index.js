@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import "./styles/styles.css"
 import { Provider } from 'react-redux';
 import App from './components/App';
 import {store} from "./redux/store";

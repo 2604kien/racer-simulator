@@ -7,6 +7,8 @@ import TrackOption from "./TrackOption";
 import RaceSection from "./RaceSection";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchRacer } from "../redux/reducers/racerSlice";
+import {fetchAllTrack} from "../redux/reducers/trackSlice";
+import {fetchLeaderboard} from "../redux/reducers/leaderboard";
 function App() {
   let imageRef=React.useRef(null);
   const dispatch=useDispatch();
@@ -19,16 +21,18 @@ function App() {
       ease: "easeInOut"
     })
   });
+  dispatch(fetchAllTrack())
   dispatch(fetchRacer());
   return ()=>{ctx.revert()}
   },[])
   return (
-    <div className="App">
+    <div className="App" >
       <img src={banner} style={{width: "100%"}} ref={(el)=>{imageRef=el}}/>
-  
-      <RacerOption/>
-      <TrackOption/>
-      <RaceSection/>
+      <div>
+        <RacerOption/>
+        <TrackOption/>
+        <RaceSection/>
+      </div>
     </div>
   );
 }

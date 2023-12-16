@@ -40,32 +40,32 @@
     {
       "id": 1,
       "name": "Track 1",
-      "segments": []
+      "distance": 15000
     },
     {
       "id": 2,
       "name": "Track 2",
-      "segments": []
+      "distance": 12000
     },
     {
       "id": 3,
       "name": "Track 3",
-      "segments": []
+      "distance": 10000
     },
     {
       "id": 4,
       "name": "Track 4",
-      "segments": []
+      "distance": 5000
     },
     {
       "id": 5,
       "name": "Track 5",
-      "segments": [ ]
+      "distance": 20000
     },
     {
       "id": 6,
       "name": "Track 6",
-      "segments": []
+      "distance": 50000
     }
   ]
 }

@@ -8,6 +8,7 @@ export class LeaderboardService {
     async addRaceToLeaderBoard(race: CreateRaceDto){
         try{
             this.leaderboard.push(race);
+            console.log(this.leaderboard);
             return race;
         }
         catch(error){
