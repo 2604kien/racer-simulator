@@ -1,9 +1,9 @@
 import { createSlice, createEntityAdapter, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const racerAdapter=createEntityAdapter({
+const racerAdapter=createEntityAdapter({});
+const initialState= racerAdapter.getInitialState({
     pickedRacer:{}
 });
-const initialState= racerAdapter.getInitialState();
 export const fetchRacer=createAsyncThunk("racers/fetchRacer",async()=>{
     try{
     const racerData=await axios.get("http://localhost:3500/racer");
@@ -14,9 +14,10 @@ export const fetchRacer=createAsyncThunk("racers/fetchRacer",async()=>{
     }
 
 })
-export const fetchracerById=createAsyncThunk("racers/fetchRacerById", async(id)=>{
+export const fetchRacerById=createAsyncThunk("racers/fetchRacerById", async(id)=>{
     try{
-        const response=await axios.post(`http://localhost:3500/racer/${id}`);
+        const response=await axios.get(`http://localhost:3500/racer/${id}`);
+        
         return response.data;
     }   
     catch(err){
@@ -32,8 +33,8 @@ const racerSlice=createSlice({
         builder.addCase(fetchRacer.fulfilled, (state, action)=>{
             state.entities=action.payload;
         })
-        .addCase(fetchracerById.fulfilled, (state, action)=>{
-            state.pickedRacer=action.payload;
+        .addCase(fetchRacerById.fulfilled, (state, action)=>{
+            state.pickedRacer=action.payload.data;
         })
     }
 });

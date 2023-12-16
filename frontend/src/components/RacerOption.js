@@ -1,18 +1,22 @@
 import React from "react";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import RacerContainer from "./RacerContainer";
-
+import { fetchRacerById } from "../redux/reducers/racerSlice";
 export default function(props){
+    const dispatch=useDispatch()
     const [currChild,setCurrChild]=React.useState(-1);
     const racers=useSelector(state=>state.racers.entities.data);
+
     const handleIsSelect=(id)=>{
         setCurrChild(id);
     }
     const element=racers?racers.map(el=><RacerContainer key={el.id} data={el} handleIsSelect={handleIsSelect} currChild={currChild}/>):racers
     const submitRacer=()=>{
-        if(currChild>-1) props.handleRacerSelect();
+        if(currChild>-1) {
+            props.handleRacerSelect();
+            dispatch(fetchRacerById(currChild));
+        };
     }
-    console.log(racers);
     return(
         <div style={{
             display: "flex",
