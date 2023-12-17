@@ -5,7 +5,7 @@ const leaderboardAdapter=createEntityAdapter({});
 const initialState=leaderboardAdapter.getInitialState();
 
 export const addRaceToLeaderboard=createAsyncThunk("leaderboard/addRaceToLeaderboard", async(raceData)=>{
-    const response= await axios.post("http://localhost:3500/racer", raceData);
+    const response= await axios.post("http://localhost:3500/leaderboard", raceData);
     return raceData;
 })
 export const getAllLeaderboard=createAsyncThunk("leaderboard/getAllLeaderboard", async()=>{
@@ -19,7 +19,6 @@ const leaderboardSlice=createSlice({
     extraReducers(builder){
         builder.addCase(addRaceToLeaderboard.fulfilled, (state, action)=>{
             state.status="succeeded";
-            leaderboardAdapter.addOne(action.payload);
         })
         .addCase(getAllLeaderboard.fulfilled, (state, action)=>{
             state.status="succeeded";

@@ -1,9 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Race from "./Race";
 import { useNavigate } from "react-router-dom";
+import { addRaceToLeaderboard } from "../redux/reducers/leaderboardSlice";
 export default function RaceSection(props){
-    const navigate=useNavigate()
+    const navigate=useNavigate();
+    const dispatch=useDispatch();
     const [count, setCount]=React.useState(3);
     const [isStart, setStart]=React.useState(count===-1?true:false);
     const racers=useSelector(state=>state.racers.entities.data);
@@ -63,9 +65,19 @@ export default function RaceSection(props){
             });
         }
     }
+    console.log(currentKmArray.findIndex(a=>Number(a.id)===Number(curRacer.id))+1);
     const handleFinish=()=>{
         props.handleReset();
-        navigate("/leaderboard");
+        const raceData={
+            racerName: curRacer.driver_name,
+            trackName: trackData.name,
+            rank: currentKmArray.findIndex(a=>Number(a.id)===Number(curRacer.id))+1,
+            date: Date.now()
+        }
+        dispatch(addRaceToLeaderboard(raceData))
+            .then(()=>{
+                navigate("/leaderboard");
+            })
     }
     return(
         <div style={{

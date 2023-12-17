@@ -1,4 +1,4 @@
-import { IsString, IsNumber } from 'class-validator';
+import { IsString, IsNumber, IsDate } from 'class-validator';
 export class CreateRaceDto{
     @IsString()
     racerName: string;
@@ -6,4 +6,6 @@ export class CreateRaceDto{
     trackName: string;
     @IsNumber()
     rank: number;
+    @IsDate()
+    date: Date;
 }
