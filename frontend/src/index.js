@@ -4,11 +4,17 @@ import "./styles/styles.css"
 import { Provider } from 'react-redux';
 import App from './components/App';
 import {store} from "./redux/store";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import "./index.css"
+import Navbar from './components/Navbar';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-      <App />
+    <BrowserRouter>
+      <Routes>
+          <Route path="/*" element={<App/>}/>
+      </Routes>
+    </BrowserRouter>
   </Provider>
 );
 

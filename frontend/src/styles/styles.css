@@ -47,7 +47,6 @@ tr{
     background-color: red;
 }
 .nav--bar{
-    position: fixed;
     width:100vw;
     display: flex;
     flex-direction: row;

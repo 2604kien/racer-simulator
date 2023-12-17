@@ -1,7 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Race from "./Race";
+import { useNavigate } from "react-router-dom";
 export default function RaceSection(props){
+    const navigate=useNavigate()
     const [count, setCount]=React.useState(3);
     const [isStart, setStart]=React.useState(count===-1?true:false);
     const racers=useSelector(state=>state.racers.entities.data);
@@ -63,6 +65,7 @@ export default function RaceSection(props){
     }
     const handleFinish=()=>{
         props.handleReset();
+        navigate("/leaderboard");
     }
     return(
         <div style={{
@@ -123,7 +126,7 @@ export default function RaceSection(props){
                 <thead>
                     <tr>
                         <th>Racer</th>
-                        <th>Current</th>
+                        <th>Current Meters</th>
                         <th>Rank:</th>
                     </tr>
                 </thead>

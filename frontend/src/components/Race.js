@@ -6,6 +6,7 @@ export default function Race(props){
     const curTrack=useSelector(state=>state.tracks.pickedTrack);
     React.useEffect(()=>{
         let interval;
+        if(props.isStart){
         if(currentKm<curTrack.distance){
             let accelerate=0;
             interval=setInterval(()=>{
@@ -20,6 +21,7 @@ export default function Race(props){
             }, 500)
         }
         else if(currentKm>curTrack.distance) setCurrentKm(curTrack.distance*2);
+        }
         return ()=>{clearInterval(interval)};
     },[currentKm, props.isStart])
     React.useEffect(()=>{

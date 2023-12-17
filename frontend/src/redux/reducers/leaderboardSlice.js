@@ -8,7 +8,10 @@ export const addRaceToLeaderboard=createAsyncThunk("leaderboard/addRaceToLeaderb
     const response= await axios.post("http://localhost:3500/racer", raceData);
     return raceData;
 })
-
+export const getAllLeaderboard=createAsyncThunk("leaderboard/getAllLeaderboard", async()=>{
+    const response=await axios.get("http://localhost:3500/leaderboard")
+    return response.data;
+})
 const leaderboardSlice=createSlice({
     name: "leaderboard",
     initialState: initialState,
@@ -17,6 +20,10 @@ const leaderboardSlice=createSlice({
         builder.addCase(addRaceToLeaderboard.fulfilled, (state, action)=>{
             state.status="succeeded";
             leaderboardAdapter.addOne(action.payload);
+        })
+        .addCase(getAllLeaderboard.fulfilled, (state, action)=>{
+            state.status="succeeded";
+            state.entities=action.payload
         })
     }
 })

@@ -8,8 +8,9 @@ import RaceSection from "./RaceSection";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchRacer } from "../redux/reducers/racerSlice";
 import {fetchAllTrack} from "../redux/reducers/trackSlice";
-import {fetchLeaderboard} from "../redux/reducers/leaderboard";
+import { Route, Routes } from "react-router-dom";
 import Navbar from "./Navbar";
+import Leaderboard from "./Leaderboard";
 function App() {
   const [isRacerSelect,setIsRacerSelect]=React.useState(true);
   const [isTrackSelect,setIsTrackSelect]=React.useState(false);
@@ -39,15 +40,24 @@ function App() {
     setIsRacerSelect(true);
     setIsTrackSelect(false);
   }
-  return (
-    <div className="App" >
-      <Navbar/>
+  const display=(
+      <>
       <img src={banner} style={{width: "100%"}} ref={(el)=>{imageRef=el}}/>
       <div>
         {isRacerSelect &&<RacerOption handleRacerSelect={handleRacerSelect}/>}
         {isTrackSelect &&<TrackOption handleTrackSelect={handleTrackSelect}/>}
         {!isRacerSelect && !isTrackSelect&&<RaceSection handleReset={handleReset}/>}
       </div>
+    </>
+  )
+  return (
+    <div className="App" >
+      <Routes>
+        <Route path="/*" element={<Navbar handleReset={handleReset}/>}>
+          <Route path="" element={display} />
+          <Route path="leaderboard" element={<Leaderboard />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
