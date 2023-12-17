@@ -39,7 +39,7 @@ export default function TrackOption(props){
             className="racer--option">
                 {element}
             </div>
-            <button onClick={submitTrack} className="submit--button">Start The Game</button>
+            <button onClick={submitTrack} style={{userSelect:"none"}} className="submit--button">Start The Game</button>
         </div>
     )
 }

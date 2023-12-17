@@ -39,7 +39,7 @@ export default function(props){
             className="racer--option">
                 {element}
             </div>
-            <button onClick={submitRacer} className="submit--button">Next</button>
+            <button onClick={submitRacer} style={{userSelect:"none"}}className="submit--button">Next</button>
         </div>
     )
 }   

@@ -34,13 +34,17 @@ function App() {
   const handleTrackSelect=()=>{
     setIsTrackSelect(prev=>!prev);
   }
+  const handleReset=()=>{
+    setIsRacerSelect(true);
+    setIsTrackSelect(false);
+  }
   return (
     <div className="App" >
       <img src={banner} style={{width: "100%"}} ref={(el)=>{imageRef=el}}/>
       <div>
         {isRacerSelect &&<RacerOption handleRacerSelect={handleRacerSelect}/>}
         {isTrackSelect &&<TrackOption handleTrackSelect={handleTrackSelect}/>}
-        {!isRacerSelect && !isTrackSelect&&<RaceSection/>}
+        {!isRacerSelect && !isTrackSelect&&<RaceSection handleReset={handleReset}/>}
       </div>
     </div>
   );

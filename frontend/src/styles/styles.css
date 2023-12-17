@@ -36,3 +36,13 @@ td{
 tr{
     border-bottom: 1px solid lightgrey;
 }
+.accelerate{
+    color: red;
+    background-color: white;
+    border: 3px solid red;
+}
+.accelerate:hover{
+    color: white;
+    border: 3px solid red;
+    background-color: red;
+}

@@ -5,12 +5,24 @@ export default function Race(props){
     const curRacer=useSelector(state=> state.racers.pickedRacer);
     const curTrack=useSelector(state=>state.tracks.pickedTrack);
     React.useEffect(()=>{
-            const interval=setInterval(()=>{
-                if(currentKm<curTrack.distance)setCurrentKm(prev=>prev+Math.floor(curRacer.top_speed/Math.ceil(curRacer.acceleration*Math.random()+(curRacer.handling*1.5)*Math.random())))
+        let interval;
+        if(currentKm<curTrack.distance){
+            interval=setInterval(()=>{
+                    setCurrentKm(prev=>{
+                        let result=prev+Math.floor(props.data.top_speed/Math.ceil(props.data.acceleration*Math.random()+(props.data.handling*1.5)*Math.random()));
+                        if(curRacer.id===props.data.id){
+                            result=prev+Math.floor(Math.random()*props.accelerate+Math.ceil(curRacer.acceleration*Math.random()+(curRacer.handling)*Math.random()));
+                        }
+                        return result;
+                    })
             }, 500)
-        if(currentKm>curTrack.distance) setCurrentKm(curTrack.distance);
+        }
+        else if(currentKm>curTrack.distance) setCurrentKm(curTrack.distance*2);
         return ()=>{clearInterval(interval)};
     },[currentKm, props.isStart])
+    React.useEffect(()=>{
+        props.handleCurrentKmChange(props.data.id, currentKm, curTrack.distance);
+    }, [currentKm]);
     return(
         <tr style={{textAlign:"center"}}>
             <td style={{
@@ -18,10 +30,11 @@ export default function Race(props){
             }}>{props.data.driver_name}</td>
             <td style={{
                 backgroundColor: curRacer.driver_name===props.data.driver_name?"green":"white"
-            }}>{currentKm}m</td>
+            }}>{currentKm>=curTrack.distance? "Finish!!!": currentKm+"m"}</td>
             <td style={{
                 backgroundColor: curRacer.driver_name===props.data.driver_name?"green":"white"
             }}>{props.rank}</td>
+
         </tr>
     )
 }

@@ -18,7 +18,6 @@ export class TrackService {
         try{
             const tracks=JSON.parse(this.trackData).tracks;
             const result=tracks.find((t:any)=>t.id===Number(id));
-            console.log(result)
             return result? {message: "Get track by id sucessfully", data:result}: {message:"Fail to get track by id"};
         }
         catch(error){

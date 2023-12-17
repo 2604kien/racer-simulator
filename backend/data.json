@@ -40,12 +40,12 @@
     {
       "id": 1,
       "name": "Track 1",
-      "distance": 15000
+      "distance": 1000
     },
     {
       "id": 2,
       "name": "Track 2",
-      "distance": 12000
+      "distance": 8000
     },
     {
       "id": 3,
@@ -60,12 +60,12 @@
     {
       "id": 5,
       "name": "Track 5",
-      "distance": 20000
+      "distance": 2000
     },
     {
       "id": 6,
       "name": "Track 6",
-      "distance": 50000
+      "distance": 7000
     }
   ]
 }
