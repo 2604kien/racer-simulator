@@ -40,6 +40,7 @@ export default function TrackOption(props){
                 {element}
             </div>
             <button onClick={submitTrack} style={{userSelect:"none"}} className="submit--button">Start The Game</button>
+            <br/>
         </div>
     )
 }

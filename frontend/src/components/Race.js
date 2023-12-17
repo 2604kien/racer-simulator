@@ -7,9 +7,11 @@ export default function Race(props){
     React.useEffect(()=>{
         let interval;
         if(currentKm<curTrack.distance){
+            let accelerate=0;
             interval=setInterval(()=>{
+                    accelerate=accelerate+props.data.acceleration;
                     setCurrentKm(prev=>{
-                        let result=prev+Math.floor(props.data.top_speed/Math.ceil(props.data.acceleration*Math.random()+(props.data.handling*1.5)*Math.random()));
+                        let result=prev+Math.floor(accelerate+props.data.top_speed/Math.ceil(props.data.acceleration*Math.random()+(props.data.handling*1.5)*Math.random()));
                         if(curRacer.id===props.data.id){
                             result=prev+Math.floor(Math.random()*props.accelerate+Math.ceil(curRacer.acceleration*Math.random()+(curRacer.handling)*Math.random()));
                         }

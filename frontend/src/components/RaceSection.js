@@ -132,6 +132,7 @@ export default function RaceSection(props){
                 </tbody>
             </table>
             {isFinished&&<button style={{userSelect:"none"}} onClick={handleFinish} className="submit--button">Save To Leaderboard</button>}
+            <br/>
         </div>
     )
 }

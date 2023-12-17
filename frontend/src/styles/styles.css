@@ -46,3 +46,39 @@ tr{
     border: 3px solid red;
     background-color: red;
 }
+.nav--bar{
+    position: fixed;
+    width:100vw;
+    display: flex;
+    flex-direction: row;
+
+    z-index: 1000;
+    background-color: white;
+    height: fit-content;
+}
+.nav--bar >ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    font-size: 1.2rem;
+    margin: auto;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.nav--bar>ul>li{
+    width: 50%;
+    height: 100%;
+    font-size: 2rem;
+    border: 1px solid green;
+    text-align: center;
+    color: green;
+    line-height: 3rem;
+    cursor: pointer;
+}
+.nav--bar>ul>li:hover{
+    color: white;
+    background-color: green;
+}

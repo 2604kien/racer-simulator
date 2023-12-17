@@ -40,6 +40,7 @@ export default function(props){
                 {element}
             </div>
             <button onClick={submitRacer} style={{userSelect:"none"}}className="submit--button">Next</button>
+            <br/>
         </div>
     )
 }   

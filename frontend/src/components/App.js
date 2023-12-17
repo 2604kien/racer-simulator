@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchRacer } from "../redux/reducers/racerSlice";
 import {fetchAllTrack} from "../redux/reducers/trackSlice";
 import {fetchLeaderboard} from "../redux/reducers/leaderboard";
+import Navbar from "./Navbar";
 function App() {
   const [isRacerSelect,setIsRacerSelect]=React.useState(true);
   const [isTrackSelect,setIsTrackSelect]=React.useState(false);
@@ -40,6 +41,7 @@ function App() {
   }
   return (
     <div className="App" >
+      <Navbar/>
       <img src={banner} style={{width: "100%"}} ref={(el)=>{imageRef=el}}/>
       <div>
         {isRacerSelect &&<RacerOption handleRacerSelect={handleRacerSelect}/>}
