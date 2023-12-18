@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Race from "./Race";
-
+import RaceProgression from "./RaceProgession";
 import { useNavigate } from "react-router-dom";
 import { addRaceToLeaderboard } from "../redux/reducers/leaderboardSlice";
 export default function RaceSection(props){
@@ -15,6 +15,7 @@ export default function RaceSection(props){
     const curRacer=useSelector(state=> state.racers.pickedRacer);
     const [currentKmArray, setCurrentKmArray]=React.useState([]);
     const trackData=useSelector(state=>state.tracks.pickedTrack);
+    const progressionElement= currentKmArray.map(el=><RaceProgression key={el.id} curRacer={curRacer} distance={trackData.distance} data={el}/>)
     React.useEffect(()=>{
         racers.map(el=>{
             setCurrentKmArray(prev=> {
@@ -22,6 +23,7 @@ export default function RaceSection(props){
                     ...prev,
                     {
                         id: el.id,
+                        name: el.driver_name,
                         currentKm: 0
                     }
                 ]
@@ -87,8 +89,18 @@ export default function RaceSection(props){
             justifyContent:"center",
             alignItems:"center"
         }}> 
+        <br></br>
+            <div style={{
+            display: "flex",
+            flexDirection:"column",
+            justifyContent:"center",
+            alignItems:"center"
+        }}>
+            
+            </div>
             <h2>Let's Race</h2>
             <h1>{count>-1?count:"Start!!!"}</h1>
+            {progressionElement}
             <div 
             style={{
                 margin:"auto",
