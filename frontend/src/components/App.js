@@ -7,7 +7,7 @@ import { getAllLeaderboard } from "../redux/reducers/leaderboardSlice";
 import RacerOption from "./RacerOption";
 import TrackOption from "./TrackOption";
 import RaceSection from "./RaceSection";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchRacer } from "../redux/reducers/racerSlice";
 import {fetchAllTrack} from "../redux/reducers/trackSlice";
 import { Route, Routes } from "react-router-dom";
@@ -32,7 +32,7 @@ function App() {
   dispatch(getAllLeaderboard());
 
   return ()=>{ctx.revert()}
-  },[])
+  },[dispatch])
   const handleRacerSelect=()=>{
     setIsRacerSelect(prev=>!prev);
     setIsTrackSelect(prev=>!prev);
@@ -46,7 +46,7 @@ function App() {
   }
   const display=(
       <>
-      <img src={banner} style={{width: "100%"}} ref={(el)=>{imageRef=el}}/>
+      <img src={banner} style={{width: "100%"}} ref={(el)=>{imageRef=el}} alt="F1 racing retrieved in 2023"/>
       <div>
         {isRacerSelect &&<RacerOption handleRacerSelect={handleRacerSelect}/>}
         {isTrackSelect &&<TrackOption handleTrackSelect={handleTrackSelect}/>}

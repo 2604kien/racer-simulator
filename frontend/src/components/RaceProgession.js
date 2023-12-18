@@ -9,7 +9,6 @@ export default function RaceProgression(props){
             alignItems:"center",
             gap: "10px"
         }}>
-
             <p>{props.data.name}:</p>
             <div style={{
                 border:"1px solid black",
@@ -23,11 +22,8 @@ export default function RaceProgression(props){
                 width: `${(props.data.currentKm/props.distance)*100}%`,
                 backgroundColor:props.curRacer.id===props.data.id? "green": "grey"
             }}>
-
             </div>
-            
-            </div>
-        
+            </div>        
         </div>
     )
 }

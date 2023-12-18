@@ -15,6 +15,7 @@ export default function RaceSection(props){
     const curRacer=useSelector(state=> state.racers.pickedRacer);
     const [currentKmArray, setCurrentKmArray]=React.useState([]);
     const trackData=useSelector(state=>state.tracks.pickedTrack);
+    //progression
     const progressionElement= currentKmArray.map(el=><RaceProgression key={el.id} curRacer={curRacer} distance={trackData.distance} data={el}/>)
     React.useEffect(()=>{
         racers.map(el=>{
@@ -30,7 +31,7 @@ export default function RaceSection(props){
             })
             return el;
         })
-    },[])
+    },[racers])
     const handleCurrentKmChange = (id, currentKm, distance) => {
         setCurrentKmArray((prev) => {
             const updatedArray = prev.map((p) =>
@@ -41,7 +42,6 @@ export default function RaceSection(props){
             }
             return updatedArray;
         });
-        console.log(currentKmArray);
         let check=false;
         for (let i=0; i< currentKmArray.length; i++){
             if(currentKmArray[i].currentKm<trackData.distance){
@@ -59,6 +59,7 @@ export default function RaceSection(props){
         }, 1000)
     return ()=>{clearInterval(interval)}
     },[count]);
+    //table in leaderboard
     const rowElement=racers.map(racer=> <Race key={racer.id} accelerate={accelerate} data={racer} isStart={isStart} handleCurrentKmChange={handleCurrentKmChange} rank={currentKmArray.findIndex(a=>Number(a.id)===Number(racer.id))+1}/>);
     const handleButtonClick=()=>{
         if(isStart){
@@ -68,7 +69,6 @@ export default function RaceSection(props){
             });
         }
     }
-    console.log(currentKmArray.findIndex(a=>Number(a.id)===Number(curRacer.id))+1);
     const handleFinish=()=>{
         props.handleReset();
         const raceData={
@@ -114,8 +114,6 @@ export default function RaceSection(props){
             }}>
             </div>
             <div style={{
-                   
-                   borderRadius:"20%",
                    cursor:"pointer",
                    width: "100px",
                    height:"100px",
@@ -123,8 +121,7 @@ export default function RaceSection(props){
                    justifyContent:"center",
                    alignItems:"center",
                    borderRadius:"50%",
-                   userSelect:"none"
-                   
+                   userSelect:"none"                   
                }} className="accelerate" onClick={handleButtonClick}><h3>Accelerate</h3></div>
                <div><h3>{curRacer.driver_name}: {accelerate}/{curRacer.top_speed} km/h</h3></div>
             <div style={{

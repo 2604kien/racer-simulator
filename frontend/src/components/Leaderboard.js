@@ -9,7 +9,7 @@ export default function Leaderboard(){
     const data=useSelector(state=>state.leaderboard.entities.data);
         React.useEffect(()=>{
         dispatch(getAllLeaderboard())
-    },[])
+    },[dispatch])
     const tableElement= data===undefined || data.length===0? "There is no race history, please race to be saved to the leaderboard." : (
         <table className="leaderboard--table">
         <thead>
