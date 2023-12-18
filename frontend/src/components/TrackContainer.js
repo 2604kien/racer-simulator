@@ -15,7 +15,7 @@ export default function TrackContainer(props){
             alignItems:"center",
             cursor: "pointer"
         }} onClick={handleClick}>
-            <img style={{width:"150px"}} src={track}/>
+            <img style={{width:"150px"}} src={track} alt="Track outline that is the same for every track"/>
             <h3>Track Name: {props.data.name} </h3>
             <h3>Distance: {props.data.distance} m</h3>
             

@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 export default function Race(props){
+    const rankLetter=props.rank===1? "st":props.rank===2?"nd": props.rank===3?"rd":"th";
     const [currentKm, setCurrentKm]=React.useState(0);
     const curRacer=useSelector(state=> state.racers.pickedRacer);
     const curTrack=useSelector(state=>state.tracks.pickedTrack);
@@ -37,7 +38,7 @@ export default function Race(props){
             }}>{currentKm>=curTrack.distance? "Finish!!!": currentKm+"m"}</td>
             <td style={{
                 backgroundColor: curRacer.driver_name===props.data.driver_name?"green":"white"
-            }}>{props.rank}</td>
+            }}>{props.rank}{rankLetter}</td>
 
         </tr>
     )

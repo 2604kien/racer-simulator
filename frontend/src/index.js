@@ -5,8 +5,7 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import {store} from "./redux/store";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import "./index.css"
-import Navbar from './components/Navbar';
+import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>

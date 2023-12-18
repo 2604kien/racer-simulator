@@ -2,7 +2,7 @@ import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 import RacerContainer from "./RacerContainer";
 import { fetchRacerById } from "../redux/reducers/racerSlice";
-export default function(props){
+export default function RacerOption(props){
     const dispatch=useDispatch()
     const [currChild,setCurrChild]=React.useState(-1);
     const racers=useSelector(state=>state.racers.entities.data);

@@ -15,7 +15,7 @@ export default function RacerContainer(props){
             alignItems:"center",
             cursor: "pointer"
         }} onClick={handleClick}>
-            <img style={{width:"150px"}} src={driver}/>
+            <img style={{width:"150px"}} src={driver} alt="Racer description that is the same for every track"/>
             <h3>Name: {props.data.driver_name} </h3>
             <h3>Top Speed: {props.data.top_speed} km/h </h3>
             <h3>Acceleration {props.data.acceleration} km/s </h3>

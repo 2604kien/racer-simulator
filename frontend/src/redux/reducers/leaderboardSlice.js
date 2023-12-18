@@ -6,7 +6,7 @@ const initialState=leaderboardAdapter.getInitialState();
 
 export const addRaceToLeaderboard=createAsyncThunk("leaderboard/addRaceToLeaderboard", async(raceData)=>{
     const response= await axios.post("http://localhost:3500/leaderboard", raceData);
-    return raceData;
+    return response;
 })
 export const getAllLeaderboard=createAsyncThunk("leaderboard/getAllLeaderboard", async()=>{
     const response=await axios.get("http://localhost:3500/leaderboard")
