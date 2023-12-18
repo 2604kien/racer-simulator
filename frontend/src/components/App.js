@@ -2,6 +2,8 @@ import "../styles/styles.css"
 import banner from "../images/F1banner.jpg";
 import {gsap} from "gsap";
 import React from "react";
+
+import { getAllLeaderboard } from "../redux/reducers/leaderboardSlice";
 import RacerOption from "./RacerOption";
 import TrackOption from "./TrackOption";
 import RaceSection from "./RaceSection";
@@ -27,6 +29,8 @@ function App() {
   });
   dispatch(fetchAllTrack())
   dispatch(fetchRacer());
+  dispatch(getAllLeaderboard());
+
   return ()=>{ctx.revert()}
   },[])
   const handleRacerSelect=()=>{

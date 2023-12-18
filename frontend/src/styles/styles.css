@@ -81,3 +81,10 @@ tr{
     color: white;
     background-color: green;
 }
+.leaderboard--table tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+td{
+    border-bottom: 1px solid lightgrey;
+    text-align: center;
+}

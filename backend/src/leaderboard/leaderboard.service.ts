@@ -18,7 +18,7 @@ export class LeaderboardService {
 
     async getLeaderBoard(){
         try{
-            return this.leaderboard.length>0? {message:"Get leaderboard information successfully", data: this.leaderboard}:{message: "Leaderboard length is 0", data:"There is no race history"};
+            return this.leaderboard.length>0? {message:"Get leaderboard information successfully", data: this.leaderboard}:{message: "Leaderboard length is 0", data:[]};
         }
         catch(error){
             console.log(error)
