@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Race from "./Race";
+import RaceTableCard from "./RaceTableCard";
 import RaceProgression from "./RaceProgession";
 import { useNavigate } from "react-router-dom";
 import { addRaceToLeaderboard } from "../redux/reducers/leaderboardSlice";
@@ -60,7 +60,7 @@ export default function RaceSection(props){
     return ()=>{clearInterval(interval)}
     },[count]);
     //table in leaderboard
-    const rowElement=racers.map(racer=> <Race key={racer.id} accelerate={accelerate} data={racer} isStart={isStart} handleCurrentKmChange={handleCurrentKmChange} rank={currentKmArray.findIndex(a=>Number(a.id)===Number(racer.id))+1}/>);
+    const rowElement=racers.map(racer=> <RaceTableCard key={racer.id} accelerate={accelerate} data={racer} isStart={isStart} handleCurrentKmChange={handleCurrentKmChange} rank={currentKmArray.findIndex(a=>Number(a.id)===Number(racer.id))+1}/>);
     const handleButtonClick=()=>{
         if(isStart){
             setAcceleration(prev=>{
