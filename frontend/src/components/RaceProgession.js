@@ -28,6 +28,7 @@ export default function RaceProgression(props){
                 flexDirection:"row",
                 justifyContent:"right",
                 alignItems:"center",
+                transition: "all 0.5s linear"
                 }}>
                     <img style={{
                         position: "relative",
